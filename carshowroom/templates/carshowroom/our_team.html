@@ -1,0 +1,42 @@
+
+{% extends "carshowroom/base.html" %} 
+
+{% block title %} Showroom Details {% endblock %} 
+
+{% block content %}
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container">
+        <a class="navbar-brand text-light" href="#">{{ showroom.name }}</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item text-light">
+                <a class="nav-link text-light" href="{% url 'carshowroom:showroom_detail' showroom.id %}">Back to Showroom</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<section id="our-team" class="container mt-5">
+    <div class="container mt-5">
+        <h2>Our Team ({{ showroom.name }})</h2>
+        <div class="row">
+            <!-- Loop through all staff members -->
+            {% for staff in staffs %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ staff.pic.url }}" class="card-img-top" height="300px" alt="Staff Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ staff.name }}</h5>
+                        <p class="card-text">{{ staff.designation }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

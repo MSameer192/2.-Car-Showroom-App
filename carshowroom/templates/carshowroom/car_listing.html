@@ -1,0 +1,50 @@
+
+{% extends "carshowroom/base.html" %} 
+
+{% block title %} Showroom Details {% endblock %} 
+
+{% block content %}
+
+
+{% comment %} <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container">
+        <a class="navbar-brand text-light" href="#">{{ showroom.name }}</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item text-light">
+                <a class="nav-link text-light" href="{% url 'carshowroom:showroom_detail' showroom.id %}">Back to Showroom</a>
+            </li>
+        </ul>
+    </div>
+</nav> {% endcomment %}
+
+<div class="container mt-5">
+    <h2>Car Listing - {{ model_name }}</h2>
+    <div class="row">
+        {% if cars %}
+            {% for car in cars %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ car.pic.url }}" class="card-img-top" alt="Car Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ car.model.name }}</h5>
+                            <p><strong>VIN:</strong> {{ car.VIN }}</p>
+                            <p><strong>Price:</strong> ${{ car.price }}</p>
+                            <p><strong>Year:</strong> {{ car.year }}</p>
+                            <h6>Features:</h6>
+                            <ul>
+                                {% for feature in car.features.all %}
+                                    <li>{{ feature.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No cars found for this model.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}

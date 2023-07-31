@@ -1,0 +1,28 @@
+{% extends "carshowroom/base.html" %} 
+
+{% block title %} Showrooms {% endblock %} 
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1>All Showrooms</h1>
+    <br>
+    <!-- Loop through all showrooms -->
+    {% for showroom in showrooms %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ showroom.name }}</h5>
+                <img src="{{ showroom.pic.url }}" class="card-img-top p-5" alt="..." width="200" height="600" />
+                <p class="card-text">Location : {{ showroom.location }}</p>
+                <p class="card-text">State : {{ showroom.address.state }}</p>
+                <p class="card-text">City : {{ showroom.address.city }}</p>
+                <p class="card-text">Street : {{ showroom.address.street }}</p>
+                <p class="card-text">ZipcodeL : {{ showroom.address.zipcode }}</p>
+
+                <a href="{% url 'carshowroom:showroom_detail' showroom.id %}" class="btn btn-primary">View Details</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
